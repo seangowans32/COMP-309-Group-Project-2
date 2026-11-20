@@ -1,0 +1,32 @@
+﻿column,type,distinct_values,blank_rows,example,description,used_in_project
+OBJECTID,int64,82746,0,1,Not in the documentation. A row number added to the downloaded file.,No. Row id only.
+EVENT_UNIQUE_ID,object,74604,0,GO-20141262837,Offence Number,"Yes. Used to remove duplicate rows (82,746 rows become 74,604 unique events)."
+REPORT_DATE,object,4656,0,1/1/2014 5:00:00 AM,Date Offence was Reported (time is displayed in UTC format when downloaded as a CSV),"No. When it was reported, not when it happened. The model works by occurrence month."
+OCC_DATE,object,4710,0,12/25/2013 5:00:00 AM,Date Offence Occurred (time is displayed in UTC format when downloaded as a CSV),"Yes. The date part gives the occurrence month. The time part is always 4:00 or 5:00 AM (midnight Toronto time), so it holds no time of day."
+REPORT_YEAR,int64,13,0,2014,Year Offence was Reported,"No. Report date, not occurrence date."
+REPORT_MONTH,object,12,0,January,Month Offence was Reported,"No. Report date, not occurrence date."
+REPORT_DAY,int64,31,0,1,Day of the Month Offence was Reported,"No. Report date, not occurrence date."
+REPORT_DOY,int64,366,0,1,Day of the Year Offence was Reported,"No. Report date, not occurrence date."
+REPORT_DOW,object,7,0,Wednesday,Day of the Week Offence was Reported,"No. Report date, not occurrence date."
+REPORT_HOUR,int64,24,0,15,Hour Offence was Reported,"No. Hour of the report, not of the theft."
+OCC_YEAR,float64,22,6,2013.0,Year Offence Occurred,Check only. Matches the year of OCC_DATE for every dated event. 6 raw rows are blank.
+OCC_MONTH,object,12,6,December,Month Offence Occurred,Check only. Matches the month of OCC_DATE for every dated event. 6 raw rows are blank.
+OCC_DAY,float64,31,6,25.0,Day of the Month Offence Occurred,No. Not needed for monthly counts.
+OCC_DOY,float64,366,6,359.0,Day of the Year Offence Occurred,No. Not needed for monthly counts.
+OCC_DOW,object,7,6,Wednesday,Day of the Week Offence Occurred,Exploration only. Used for the weekday chart (the text has trailing spaces to strip).
+OCC_HOUR,int64,24,0,0,Hour Offence Occurred,"Yes, in one feature. Used for the night-share feature (share of the last 12 months' thefts between 22:00 and 05:59). Spikes at hours 0 and 12 may be estimated times."
+DIVISION,object,18,0,D22,Police Division where Offence Occurred,No. The model uses neighbourhood instead. NSA means unknown.
+LOCATION_TYPE,object,42,18,"Parking Lots (Apt., Commercial Or Non-Commercial)",Location Type of Offence,No. 42 values; PREMISES_TYPE summarises it. 18 raw rows are blank.
+PREMISES_TYPE,object,7,0,Outside,Premises Type of Offence,Yes. Used for the house-share and outside-share features.
+UCR_CODE,int64,1,0,2135,UCR Code for Offence,No. Same value in every row.
+UCR_EXT,int64,1,0,210,UCR Extension for Offence,No. Same value in every row.
+OFFENCE,object,1,0,Theft Of Motor Vehicle,Title of Offence,No. Same value in every row (Theft Of Motor Vehicle).
+CSI_CATEGORY,object,1,0,Auto Theft,CSI Category of Occurrence,No. Same value in every row (Auto Theft).
+HOOD_158,object,159,0,159,Identifier of Neighbourhood using City of Toronto's new 158 neighbourhood structure,"Yes. Identifies the neighbourhood for the monthly counts. Non-numeric codes (NSA, unknown) are dropped."
+NEIGHBOURHOOD_158,object,159,0,Etobicoke City Centre (159),Name of Neighbourhood using City of Toronto's new 158 neighbourhood structure,Yes. Neighbourhood name for display and the API dropdown.
+HOOD_140,object,141,0,014,Identifier of Neighbourhood using City of Toronto's old 140 neighbourhood structure,No. Older neighbourhood structure; the 158 structure replaces it.
+NEIGHBOURHOOD_140,object,141,0,Islington-City Centre West (14),Name of Neighbourhood using City of Toronto's old 140 neighbourhood structure,No. Older neighbourhood structure; the 158 structure replaces it.
+LONG_WGS84,float64,15925,0,-79.5296917052301,Longitude Coordinates (Offset to nearest intersection),Exploration only. Used for the location map. 810 events have 0 (unknown). Possible use in an innovation idea (nearby neighbourhoods).
+LAT_WGS84,float64,15925,0,43.6189876087985,Latitude Coordinates (Offset to nearest intersection),Exploration only. Used for the location map. 810 events have 0 (unknown). Possible use in an innovation idea (nearby neighbourhoods).
+x,float64,15925,0,-8853204.78354663,"Not in the documentation. Map coordinate (east-west) in a projected system; values are in the millions, likely metres. Repeats the longitude.",No. Repeats longitude in another projection.
+y,float64,15923,0,5406667.72204717,"Not in the documentation. Map coordinate (north-south) in a projected system; values are in the millions, likely metres. Repeats the latitude.",No. Repeats latitude in another projection.
