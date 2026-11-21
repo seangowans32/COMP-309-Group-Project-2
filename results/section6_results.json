@@ -1,0 +1,1816 @@
+{
+  "library_versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "seaborn": "0.13.2"
+  },
+  "splits": {
+    "train_rows": 13114,
+    "validation_rows": 3792,
+    "test_rows": 5214,
+    "train_hotspot_share": 0.3193,
+    "validation_hotspot_share": 0.2803,
+    "test_hotspot_share": 0.29,
+    "train_months": [
+      "2015-02",
+      "2021-12"
+    ],
+    "validation_months": [
+      "2022-01",
+      "2023-12"
+    ],
+    "test_months": [
+      "2024-01",
+      "2026-09"
+    ]
+  },
+  "swing_definition": "Forecast months February 2015 to September 2026. A neighbourhood swings when its hotspot share is greater than 0.20 and less than 0.80. 11 neighbourhoods are at or above 0.80 and 74 are at or below 0.20.",
+  "swing_hood_ids": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10,
+    11,
+    16,
+    23,
+    24,
+    30,
+    32,
+    33,
+    34,
+    35,
+    36,
+    38,
+    39,
+    40,
+    42,
+    43,
+    47,
+    48,
+    50,
+    52,
+    54,
+    56,
+    62,
+    63,
+    70,
+    73,
+    78,
+    90,
+    95,
+    98,
+    101,
+    103,
+    105,
+    107,
+    108,
+    110,
+    111,
+    113,
+    116,
+    118,
+    120,
+    122,
+    123,
+    124,
+    126,
+    128,
+    129,
+    136,
+    138,
+    139,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    150,
+    152,
+    155,
+    156,
+    158,
+    160,
+    161,
+    164,
+    168,
+    171
+  ],
+  "mutual_info_top10": [
+    "mean12_pct_rank",
+    "hotspot_rate12",
+    "mean12",
+    "mean3_pct_rank",
+    "mean3",
+    "last1_pct_rank",
+    "last_count_rank",
+    "outside_share12",
+    "same_month_ly_pct_rank",
+    "last1"
+  ],
+  "feature_sets": {
+    "counts_plus_ranks": [
+      "last1",
+      "mean3",
+      "mean12",
+      "same_month_ly",
+      "trend",
+      "last1_pct_rank",
+      "mean3_pct_rank",
+      "mean12_pct_rank",
+      "same_month_ly_pct_rank"
+    ],
+    "all_18": [
+      "last1",
+      "mean3",
+      "mean12",
+      "same_month_ly",
+      "trend",
+      "last1_pct_rank",
+      "mean3_pct_rank",
+      "mean12_pct_rank",
+      "same_month_ly_pct_rank",
+      "house_share12",
+      "outside_share12",
+      "night_share12",
+      "month_sin",
+      "month_cos",
+      "city_total3",
+      "previous_hotspot",
+      "hotspot_rate12",
+      "last_count_rank"
+    ],
+    "mutual_info_top10": [
+      "mean12_pct_rank",
+      "hotspot_rate12",
+      "mean12",
+      "mean3_pct_rank",
+      "mean3",
+      "last1_pct_rank",
+      "last_count_rank",
+      "outside_share12",
+      "same_month_ly_pct_rank",
+      "last1"
+    ]
+  },
+  "selection_rule": "Shortlist configs within 0.01 validation F1 of the best. Pick the highest swing-neighbourhood validation F1. Tie-break with validation ROC AUC, then fewer features, then no neighbourhood id.",
+  "baselines": {
+    "validation": {
+      "always_no": {
+        "overall": {
+          "accuracy": 0.7197,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "roc_auc": 0.5
+        },
+        "swing": {
+          "accuracy": 0.5947,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "roc_auc": 0.5,
+          "rows": 1752,
+          "hotspot_share": 0.4053
+        }
+      },
+      "persistence": {
+        "overall": {
+          "accuracy": 0.7838,
+          "precision": 0.6128,
+          "recall": 0.6209,
+          "f1": 0.6168,
+          "roc_auc": 0.734
+        },
+        "swing": {
+          "accuracy": 0.653,
+          "precision": 0.571,
+          "recall": 0.5775,
+          "f1": 0.5742,
+          "roc_auc": 0.6409,
+          "rows": 1752,
+          "hotspot_share": 0.4053
+        }
+      },
+      "mean12_top25": {
+        "overall": {
+          "accuracy": 0.8336,
+          "precision": 0.725,
+          "recall": 0.6548,
+          "f1": 0.6881,
+          "roc_auc": 0.8788
+        },
+        "swing": {
+          "accuracy": 0.7152,
+          "precision": 0.6522,
+          "recall": 0.6366,
+          "f1": 0.6443,
+          "roc_auc": 0.7613,
+          "rows": 1752,
+          "hotspot_share": 0.4053
+        }
+      }
+    },
+    "test": {
+      "always_no": {
+        "overall": {
+          "accuracy": 0.71,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "roc_auc": 0.5
+        },
+        "swing": {
+          "accuracy": 0.5845,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "roc_auc": 0.5,
+          "rows": 2409,
+          "hotspot_share": 0.4155
+        }
+      },
+      "persistence": {
+        "overall": {
+          "accuracy": 0.7687,
+          "precision": 0.6017,
+          "recall": 0.5985,
+          "f1": 0.6001,
+          "roc_auc": 0.7184
+        },
+        "swing": {
+          "accuracy": 0.6389,
+          "precision": 0.5657,
+          "recall": 0.5634,
+          "f1": 0.5646,
+          "roc_auc": 0.628,
+          "rows": 2409,
+          "hotspot_share": 0.4155
+        }
+      },
+      "mean12_top25": {
+        "overall": {
+          "accuracy": 0.8159,
+          "precision": 0.7081,
+          "recall": 0.621,
+          "f1": 0.6617,
+          "roc_auc": 0.8629
+        },
+        "swing": {
+          "accuracy": 0.6941,
+          "precision": 0.6407,
+          "recall": 0.6004,
+          "f1": 0.6199,
+          "roc_auc": 0.7428,
+          "rows": 2409,
+          "hotspot_share": 0.4155
+        }
+      }
+    }
+  },
+  "leaderboard": [
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.63,
+      "n_features": 9,
+      "val_f1": 0.6966,
+      "val_auc": 0.8751,
+      "swing_val_f1": 0.6635,
+      "val_metrics": {
+        "accuracy": 0.8143,
+        "precision": 0.6428,
+        "recall": 0.7601,
+        "f1": 0.6966,
+        "roc_auc": 0.8751
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.52,
+      "n_features": 18,
+      "val_f1": 0.6956,
+      "val_auc": 0.8829,
+      "swing_val_f1": 0.6635,
+      "val_metrics": {
+        "accuracy": 0.8151,
+        "precision": 0.646,
+        "recall": 0.7535,
+        "f1": 0.6956,
+        "roc_auc": 0.8829
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.47,
+      "n_features": 18,
+      "val_f1": 0.695,
+      "val_auc": 0.8805,
+      "swing_val_f1": 0.6629,
+      "val_metrics": {
+        "accuracy": 0.807,
+        "precision": 0.6238,
+        "recall": 0.7846,
+        "f1": 0.695,
+        "roc_auc": 0.8805
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.53,
+      "n_features": 18,
+      "val_f1": 0.6944,
+      "val_auc": 0.8816,
+      "swing_val_f1": 0.6659,
+      "val_metrics": {
+        "accuracy": 0.8138,
+        "precision": 0.6431,
+        "recall": 0.7545,
+        "f1": 0.6944,
+        "roc_auc": 0.8816
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 40,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.56,
+      "n_features": 10,
+      "val_f1": 0.6941,
+      "val_auc": 0.8798,
+      "swing_val_f1": 0.6575,
+      "val_metrics": {
+        "accuracy": 0.8175,
+        "precision": 0.6547,
+        "recall": 0.7385,
+        "f1": 0.6941,
+        "roc_auc": 0.8798
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 40,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.57,
+      "n_features": 9,
+      "val_f1": 0.6941,
+      "val_auc": 0.879,
+      "swing_val_f1": 0.6589,
+      "val_metrics": {
+        "accuracy": 0.8154,
+        "precision": 0.6482,
+        "recall": 0.7469,
+        "f1": 0.6941,
+        "roc_auc": 0.879
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.56,
+      "n_features": 18,
+      "val_f1": 0.694,
+      "val_auc": 0.8791,
+      "swing_val_f1": 0.6609,
+      "val_metrics": {
+        "accuracy": 0.8151,
+        "precision": 0.6474,
+        "recall": 0.7479,
+        "f1": 0.694,
+        "roc_auc": 0.8791
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.53,
+      "n_features": 18,
+      "val_f1": 0.6934,
+      "val_auc": 0.882,
+      "swing_val_f1": 0.6638,
+      "val_metrics": {
+        "accuracy": 0.8162,
+        "precision": 0.6512,
+        "recall": 0.7413,
+        "f1": 0.6934,
+        "roc_auc": 0.882
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.53,
+      "n_features": 18,
+      "val_f1": 0.6932,
+      "val_auc": 0.8816,
+      "swing_val_f1": 0.6642,
+      "val_metrics": {
+        "accuracy": 0.8128,
+        "precision": 0.6411,
+        "recall": 0.7545,
+        "f1": 0.6932,
+        "roc_auc": 0.8816
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 16,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.58,
+      "n_features": 10,
+      "val_f1": 0.6931,
+      "val_auc": 0.8808,
+      "swing_val_f1": 0.6655,
+      "val_metrics": {
+        "accuracy": 0.8064,
+        "precision": 0.6238,
+        "recall": 0.7799,
+        "f1": 0.6931,
+        "roc_auc": 0.8808
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 40,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.55,
+      "n_features": 9,
+      "val_f1": 0.6929,
+      "val_auc": 0.8798,
+      "swing_val_f1": 0.661,
+      "val_metrics": {
+        "accuracy": 0.8104,
+        "precision": 0.6346,
+        "recall": 0.7629,
+        "f1": 0.6929,
+        "roc_auc": 0.8798
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.67,
+      "n_features": 10,
+      "val_f1": 0.6927,
+      "val_auc": 0.8803,
+      "swing_val_f1": 0.6602,
+      "val_metrics": {
+        "accuracy": 0.8136,
+        "precision": 0.6438,
+        "recall": 0.7498,
+        "f1": 0.6927,
+        "roc_auc": 0.8803
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 8,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.61,
+      "n_features": 10,
+      "val_f1": 0.6926,
+      "val_auc": 0.8799,
+      "swing_val_f1": 0.6592,
+      "val_metrics": {
+        "accuracy": 0.8165,
+        "precision": 0.6528,
+        "recall": 0.7375,
+        "f1": 0.6926,
+        "roc_auc": 0.8799
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 16,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.65,
+      "n_features": 9,
+      "val_f1": 0.6925,
+      "val_auc": 0.8777,
+      "swing_val_f1": 0.6597,
+      "val_metrics": {
+        "accuracy": 0.8141,
+        "precision": 0.6455,
+        "recall": 0.7469,
+        "f1": 0.6925,
+        "roc_auc": 0.8777
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 40,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.55,
+      "n_features": 18,
+      "val_f1": 0.6925,
+      "val_auc": 0.8798,
+      "swing_val_f1": 0.6586,
+      "val_metrics": {
+        "accuracy": 0.8117,
+        "precision": 0.6386,
+        "recall": 0.7563,
+        "f1": 0.6925,
+        "roc_auc": 0.8798
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 30,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.63,
+      "n_features": 9,
+      "val_f1": 0.6925,
+      "val_auc": 0.8768,
+      "swing_val_f1": 0.6619,
+      "val_metrics": {
+        "accuracy": 0.8075,
+        "precision": 0.627,
+        "recall": 0.7733,
+        "f1": 0.6925,
+        "roc_auc": 0.8768
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.58,
+      "n_features": 9,
+      "val_f1": 0.6924,
+      "val_auc": 0.8787,
+      "swing_val_f1": 0.6582,
+      "val_metrics": {
+        "accuracy": 0.8196,
+        "precision": 0.6632,
+        "recall": 0.7244,
+        "f1": 0.6924,
+        "roc_auc": 0.8787
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 40,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.55,
+      "n_features": 10,
+      "val_f1": 0.6924,
+      "val_auc": 0.8794,
+      "swing_val_f1": 0.6555,
+      "val_metrics": {
+        "accuracy": 0.8154,
+        "precision": 0.6496,
+        "recall": 0.7413,
+        "f1": 0.6924,
+        "roc_auc": 0.8794
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 8,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.62,
+      "n_features": 9,
+      "val_f1": 0.6919,
+      "val_auc": 0.8761,
+      "swing_val_f1": 0.664,
+      "val_metrics": {
+        "accuracy": 0.8025,
+        "precision": 0.6148,
+        "recall": 0.7912,
+        "f1": 0.6919,
+        "roc_auc": 0.8761
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.71,
+      "n_features": 10,
+      "val_f1": 0.6919,
+      "val_auc": 0.8781,
+      "swing_val_f1": 0.6561,
+      "val_metrics": {
+        "accuracy": 0.8194,
+        "precision": 0.6629,
+        "recall": 0.7234,
+        "f1": 0.6919,
+        "roc_auc": 0.8781
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 40,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.55,
+      "n_features": 18,
+      "val_f1": 0.6915,
+      "val_auc": 0.8802,
+      "swing_val_f1": 0.6581,
+      "val_metrics": {
+        "accuracy": 0.8125,
+        "precision": 0.6417,
+        "recall": 0.7498,
+        "f1": 0.6915,
+        "roc_auc": 0.8802
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.56,
+      "n_features": 10,
+      "val_f1": 0.6915,
+      "val_auc": 0.8784,
+      "swing_val_f1": 0.6541,
+      "val_metrics": {
+        "accuracy": 0.8167,
+        "precision": 0.6546,
+        "recall": 0.7328,
+        "f1": 0.6915,
+        "roc_auc": 0.8784
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.71,
+      "n_features": 10,
+      "val_f1": 0.6915,
+      "val_auc": 0.8779,
+      "swing_val_f1": 0.6557,
+      "val_metrics": {
+        "accuracy": 0.8186,
+        "precision": 0.6607,
+        "recall": 0.7253,
+        "f1": 0.6915,
+        "roc_auc": 0.8779
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.67,
+      "n_features": 9,
+      "val_f1": 0.6913,
+      "val_auc": 0.8782,
+      "swing_val_f1": 0.6594,
+      "val_metrics": {
+        "accuracy": 0.8064,
+        "precision": 0.6251,
+        "recall": 0.7733,
+        "f1": 0.6913,
+        "roc_auc": 0.8782
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 30,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.62,
+      "n_features": 10,
+      "val_f1": 0.6911,
+      "val_auc": 0.8796,
+      "swing_val_f1": 0.6567,
+      "val_metrics": {
+        "accuracy": 0.8157,
+        "precision": 0.6517,
+        "recall": 0.7357,
+        "f1": 0.6911,
+        "roc_auc": 0.8796
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.71,
+      "n_features": 10,
+      "val_f1": 0.6911,
+      "val_auc": 0.879,
+      "swing_val_f1": 0.6545,
+      "val_metrics": {
+        "accuracy": 0.8223,
+        "precision": 0.6738,
+        "recall": 0.7093,
+        "f1": 0.6911,
+        "roc_auc": 0.879
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 16,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.57,
+      "n_features": 18,
+      "val_f1": 0.691,
+      "val_auc": 0.8801,
+      "swing_val_f1": 0.6607,
+      "val_metrics": {
+        "accuracy": 0.8083,
+        "precision": 0.6302,
+        "recall": 0.7648,
+        "f1": 0.691,
+        "roc_auc": 0.8801
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.6,
+      "n_features": 10,
+      "val_f1": 0.6909,
+      "val_auc": 0.8766,
+      "swing_val_f1": 0.658,
+      "val_metrics": {
+        "accuracy": 0.8049,
+        "precision": 0.6213,
+        "recall": 0.778,
+        "f1": 0.6909,
+        "roc_auc": 0.8766
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.55,
+      "n_features": 10,
+      "val_f1": 0.6909,
+      "val_auc": 0.8786,
+      "swing_val_f1": 0.6555,
+      "val_metrics": {
+        "accuracy": 0.8138,
+        "precision": 0.6462,
+        "recall": 0.7422,
+        "f1": 0.6909,
+        "roc_auc": 0.8786
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 30,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.57,
+      "n_features": 10,
+      "val_f1": 0.6907,
+      "val_auc": 0.8793,
+      "swing_val_f1": 0.6573,
+      "val_metrics": {
+        "accuracy": 0.812,
+        "precision": 0.6409,
+        "recall": 0.7488,
+        "f1": 0.6907,
+        "roc_auc": 0.8793
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 8,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.57,
+      "n_features": 10,
+      "val_f1": 0.69,
+      "val_auc": 0.8792,
+      "swing_val_f1": 0.6573,
+      "val_metrics": {
+        "accuracy": 0.8107,
+        "precision": 0.6377,
+        "recall": 0.7516,
+        "f1": 0.69,
+        "roc_auc": 0.8792
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 30,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.65,
+      "n_features": 9,
+      "val_f1": 0.6899,
+      "val_auc": 0.8768,
+      "swing_val_f1": 0.6538,
+      "val_metrics": {
+        "accuracy": 0.8194,
+        "precision": 0.6649,
+        "recall": 0.7168,
+        "f1": 0.6899,
+        "roc_auc": 0.8768
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.54,
+      "n_features": 18,
+      "val_f1": 0.6897,
+      "val_auc": 0.879,
+      "swing_val_f1": 0.6571,
+      "val_metrics": {
+        "accuracy": 0.8083,
+        "precision": 0.6312,
+        "recall": 0.7601,
+        "f1": 0.6897,
+        "roc_auc": 0.879
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.57,
+      "n_features": 9,
+      "val_f1": 0.6894,
+      "val_auc": 0.8775,
+      "swing_val_f1": 0.6509,
+      "val_metrics": {
+        "accuracy": 0.8149,
+        "precision": 0.6508,
+        "recall": 0.7328,
+        "f1": 0.6894,
+        "roc_auc": 0.8775
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 30,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.59,
+      "n_features": 18,
+      "val_f1": 0.6893,
+      "val_auc": 0.879,
+      "swing_val_f1": 0.6556,
+      "val_metrics": {
+        "accuracy": 0.8114,
+        "precision": 0.6405,
+        "recall": 0.746,
+        "f1": 0.6893,
+        "roc_auc": 0.879
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.54,
+      "n_features": 18,
+      "val_f1": 0.6891,
+      "val_auc": 0.8766,
+      "swing_val_f1": 0.6514,
+      "val_metrics": {
+        "accuracy": 0.817,
+        "precision": 0.6578,
+        "recall": 0.7234,
+        "f1": 0.6891,
+        "roc_auc": 0.8766
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 8,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.55,
+      "n_features": 18,
+      "val_f1": 0.6889,
+      "val_auc": 0.8797,
+      "swing_val_f1": 0.6593,
+      "val_metrics": {
+        "accuracy": 0.8027,
+        "precision": 0.6174,
+        "recall": 0.7789,
+        "f1": 0.6889,
+        "roc_auc": 0.8797
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 8,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.62,
+      "n_features": 18,
+      "val_f1": 0.6886,
+      "val_auc": 0.8789,
+      "swing_val_f1": 0.6497,
+      "val_metrics": {
+        "accuracy": 0.8207,
+        "precision": 0.6708,
+        "recall": 0.7074,
+        "f1": 0.6886,
+        "roc_auc": 0.8789
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 8,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.6,
+      "n_features": 9,
+      "val_f1": 0.6885,
+      "val_auc": 0.8766,
+      "swing_val_f1": 0.657,
+      "val_metrics": {
+        "accuracy": 0.8093,
+        "precision": 0.6351,
+        "recall": 0.7516,
+        "f1": 0.6885,
+        "roc_auc": 0.8766
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 16,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.59,
+      "n_features": 10,
+      "val_f1": 0.6883,
+      "val_auc": 0.876,
+      "swing_val_f1": 0.6509,
+      "val_metrics": {
+        "accuracy": 0.8223,
+        "precision": 0.677,
+        "recall": 0.6999,
+        "f1": 0.6883,
+        "roc_auc": 0.876
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 30,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.57,
+      "n_features": 18,
+      "val_f1": 0.6882,
+      "val_auc": 0.8793,
+      "swing_val_f1": 0.6575,
+      "val_metrics": {
+        "accuracy": 0.8067,
+        "precision": 0.6281,
+        "recall": 0.7611,
+        "f1": 0.6882,
+        "roc_auc": 0.8793
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.6,
+      "n_features": 9,
+      "val_f1": 0.6882,
+      "val_auc": 0.8672,
+      "swing_val_f1": 0.6502,
+      "val_metrics": {
+        "accuracy": 0.8165,
+        "precision": 0.657,
+        "recall": 0.7225,
+        "f1": 0.6882,
+        "roc_auc": 0.8672
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.62,
+      "n_features": 9,
+      "val_f1": 0.6873,
+      "val_auc": 0.8742,
+      "swing_val_f1": 0.6449,
+      "val_metrics": {
+        "accuracy": 0.8267,
+        "precision": 0.6956,
+        "recall": 0.6792,
+        "f1": 0.6873,
+        "roc_auc": 0.8742
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 16,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.59,
+      "n_features": 9,
+      "val_f1": 0.6872,
+      "val_auc": 0.8748,
+      "swing_val_f1": 0.6528,
+      "val_metrics": {
+        "accuracy": 0.8154,
+        "precision": 0.6545,
+        "recall": 0.7234,
+        "f1": 0.6872,
+        "roc_auc": 0.8748
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.63,
+      "n_features": 10,
+      "val_f1": 0.6864,
+      "val_auc": 0.8748,
+      "swing_val_f1": 0.6463,
+      "val_metrics": {
+        "accuracy": 0.8265,
+        "precision": 0.6957,
+        "recall": 0.6773,
+        "f1": 0.6864,
+        "roc_auc": 0.8748
+      }
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 16,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "threshold": 0.6,
+      "n_features": 18,
+      "val_f1": 0.6862,
+      "val_auc": 0.8775,
+      "swing_val_f1": 0.6456,
+      "val_metrics": {
+        "accuracy": 0.8246,
+        "precision": 0.6884,
+        "recall": 0.6839,
+        "f1": 0.6862,
+        "roc_auc": 0.8775
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.77,
+      "n_features": 9,
+      "val_f1": 0.6856,
+      "val_auc": 0.8756,
+      "swing_val_f1": 0.6433,
+      "val_metrics": {
+        "accuracy": 0.8244,
+        "precision": 0.6882,
+        "recall": 0.683,
+        "f1": 0.6856,
+        "roc_auc": 0.8756
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "all_18",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.57,
+      "n_features": 18,
+      "val_f1": 0.6854,
+      "val_auc": 0.8736,
+      "swing_val_f1": 0.6484,
+      "val_metrics": {
+        "accuracy": 0.8143,
+        "precision": 0.6528,
+        "recall": 0.7215,
+        "f1": 0.6854,
+        "roc_auc": 0.8736
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.56,
+      "n_features": 10,
+      "val_f1": 0.6849,
+      "val_auc": 0.875,
+      "swing_val_f1": 0.6503,
+      "val_metrics": {
+        "accuracy": 0.8091,
+        "precision": 0.6372,
+        "recall": 0.7404,
+        "f1": 0.6849,
+        "roc_auc": 0.875
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.77,
+      "n_features": 9,
+      "val_f1": 0.6849,
+      "val_auc": 0.8757,
+      "swing_val_f1": 0.6424,
+      "val_metrics": {
+        "accuracy": 0.8241,
+        "precision": 0.6879,
+        "recall": 0.682,
+        "f1": 0.6849,
+        "roc_auc": 0.8757
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.72,
+      "n_features": 9,
+      "val_f1": 0.6847,
+      "val_auc": 0.8758,
+      "swing_val_f1": 0.6483,
+      "val_metrics": {
+        "accuracy": 0.8099,
+        "precision": 0.6397,
+        "recall": 0.7366,
+        "f1": 0.6847,
+        "roc_auc": 0.8758
+      }
+    },
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "mutual_info_top10",
+      "use_neighbourhood": true,
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.59,
+      "n_features": 10,
+      "val_f1": 0.6835,
+      "val_auc": 0.8708,
+      "swing_val_f1": 0.6461,
+      "val_metrics": {
+        "accuracy": 0.8051,
+        "precision": 0.6274,
+        "recall": 0.7507,
+        "f1": 0.6835,
+        "roc_auc": 0.8708
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "counts_plus_ranks",
+      "use_neighbourhood": false,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.61,
+      "n_features": 9,
+      "val_f1": 0.6828,
+      "val_auc": 0.8727,
+      "swing_val_f1": 0.6382,
+      "val_metrics": {
+        "accuracy": 0.8238,
+        "precision": 0.6894,
+        "recall": 0.6764,
+        "f1": 0.6828,
+        "roc_auc": 0.8727
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "all_18",
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.54,
+      "n_features": 18,
+      "val_f1": 0.6797,
+      "val_auc": 0.8743,
+      "swing_val_f1": 0.6447,
+      "val_metrics": {
+        "accuracy": 0.8009,
+        "precision": 0.619,
+        "recall": 0.7535,
+        "f1": 0.6797,
+        "roc_auc": 0.8743
+      }
+    }
+  ],
+  "per_algorithm": [
+    {
+      "algorithm": "Logistic Regression",
+      "feature_set": "all_18",
+      "features": [
+        "last1",
+        "mean3",
+        "mean12",
+        "same_month_ly",
+        "trend",
+        "last1_pct_rank",
+        "mean3_pct_rank",
+        "mean12_pct_rank",
+        "same_month_ly_pct_rank",
+        "house_share12",
+        "outside_share12",
+        "night_share12",
+        "month_sin",
+        "month_cos",
+        "city_total3",
+        "previous_hotspot",
+        "hotspot_rate12",
+        "last_count_rank"
+      ],
+      "use_neighbourhood": false,
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "params_tried": "C in {0.1, 1, 10}; class_weight balanced",
+      "threshold": 0.5299999999999999,
+      "validation": {
+        "accuracy": 0.8138,
+        "precision": 0.6431,
+        "recall": 0.7545,
+        "f1": 0.6944,
+        "roc_auc": 0.8816
+      },
+      "validation_swing_f1": 0.6659,
+      "chosen": true,
+      "test": {
+        "overall": {
+          "accuracy": 0.7852,
+          "precision": 0.5994,
+          "recall": 0.7817,
+          "f1": 0.6785,
+          "roc_auc": 0.8647
+        },
+        "swing": {
+          "accuracy": 0.6413,
+          "precision": 0.5463,
+          "recall": 0.8082,
+          "f1": 0.6519,
+          "roc_auc": 0.7463,
+          "rows": 2409,
+          "hotspot_share": 0.4155
+        },
+        "confusion": {
+          "tn": 2912,
+          "fp": 790,
+          "fn": 330,
+          "tp": 1182
+        }
+      },
+      "importances": [
+        {
+          "feature": "mean12",
+          "auc_drop": 0.0553,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "mean3",
+          "auc_drop": 0.0514,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "last_count_rank",
+          "auc_drop": 0.0248,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "mean12_pct_rank",
+          "auc_drop": 0.0194,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "city_total3",
+          "auc_drop": 0.0136,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "last1_pct_rank",
+          "auc_drop": 0.0089,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "last1",
+          "auc_drop": 0.0073,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "trend",
+          "auc_drop": 0.0044,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "outside_share12",
+          "auc_drop": 0.0007,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "same_month_ly",
+          "auc_drop": 0.0006,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "month_cos",
+          "auc_drop": 0.0003,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "mean3_pct_rank",
+          "auc_drop": 0.0002,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "previous_hotspot",
+          "auc_drop": 0.0002,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "same_month_ly_pct_rank",
+          "auc_drop": 0.0001,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "night_share12",
+          "auc_drop": 0.0,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "month_sin",
+          "auc_drop": -0.0,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "hotspot_rate12",
+          "auc_drop": -0.0001,
+          "kind": "validation permutation drop in ROC AUC"
+        },
+        {
+          "feature": "house_share12",
+          "auc_drop": -0.0002,
+          "kind": "validation permutation drop in ROC AUC"
+        }
+      ]
+    },
+    {
+      "algorithm": "Random Forest",
+      "feature_set": "mutual_info_top10",
+      "features": [
+        "mean12_pct_rank",
+        "hotspot_rate12",
+        "mean12",
+        "mean3_pct_rank",
+        "mean3",
+        "last1_pct_rank",
+        "last_count_rank",
+        "outside_share12",
+        "same_month_ly_pct_rank",
+        "last1"
+      ],
+      "use_neighbourhood": true,
+      "params": {
+        "n_estimators": 200,
+        "max_depth": 16,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample"
+      },
+      "params_tried": "n_estimators 200; max_depth in {8, 16, unlimited}; min_samples_leaf in {10, 20, 30}; class_weight balanced_subsample",
+      "threshold": 0.58,
+      "validation": {
+        "accuracy": 0.8064,
+        "precision": 0.6238,
+        "recall": 0.7799,
+        "f1": 0.6931,
+        "roc_auc": 0.8808
+      },
+      "validation_swing_f1": 0.6655,
+      "chosen": false,
+      "test": {
+        "overall": {
+          "accuracy": 0.7988,
+          "precision": 0.63,
+          "recall": 0.7421,
+          "f1": 0.6814,
+          "roc_auc": 0.8648
+        },
+        "swing": {
+          "accuracy": 0.6646,
+          "precision": 0.5724,
+          "recall": 0.7622,
+          "f1": 0.6538,
+          "roc_auc": 0.7493,
+          "rows": 2409,
+          "hotspot_share": 0.4155
+        },
+        "confusion": {
+          "tn": 3043,
+          "fp": 659,
+          "fn": 390,
+          "tp": 1122
+        }
+      }
+    },
+    {
+      "algorithm": "Gradient boosting",
+      "feature_set": "counts_plus_ranks",
+      "features": [
+        "last1",
+        "mean3",
+        "mean12",
+        "same_month_ly",
+        "trend",
+        "last1_pct_rank",
+        "mean3_pct_rank",
+        "mean12_pct_rank",
+        "same_month_ly_pct_rank"
+      ],
+      "use_neighbourhood": true,
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 40,
+        "max_iter": 250,
+        "l2_regularization": 0.1,
+        "class_weight": "balanced"
+      },
+      "params_tried": "learning_rate in {0.05, 0.1}; max_depth in {3, 6}; min_samples_leaf in {20, 40}; max_iter 250; l2_regularization 0.1; class_weight balanced",
+      "threshold": 0.5499999999999999,
+      "validation": {
+        "accuracy": 0.8104,
+        "precision": 0.6346,
+        "recall": 0.7629,
+        "f1": 0.6929,
+        "roc_auc": 0.8798
+      },
+      "validation_swing_f1": 0.661,
+      "chosen": false,
+      "test": {
+        "overall": {
+          "accuracy": 0.8005,
+          "precision": 0.6355,
+          "recall": 0.7321,
+          "f1": 0.6804,
+          "roc_auc": 0.8632
+        },
+        "swing": {
+          "accuracy": 0.6663,
+          "precision": 0.5758,
+          "recall": 0.7473,
+          "f1": 0.6504,
+          "roc_auc": 0.7439,
+          "rows": 2409,
+          "hotspot_share": 0.4155
+        },
+        "confusion": {
+          "tn": 3067,
+          "fp": 635,
+          "fn": 405,
+          "tp": 1107
+        }
+      }
+    }
+  ],
+  "chosen_algorithm": "Logistic Regression"
+}

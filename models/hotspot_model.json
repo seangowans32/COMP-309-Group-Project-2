@@ -1,0 +1,33 @@
+{
+  "algorithm": "Logistic Regression",
+  "feature_set": "all_18",
+  "features": [
+    "last1",
+    "mean3",
+    "mean12",
+    "same_month_ly",
+    "trend",
+    "last1_pct_rank",
+    "mean3_pct_rank",
+    "mean12_pct_rank",
+    "same_month_ly_pct_rank",
+    "house_share12",
+    "outside_share12",
+    "night_share12",
+    "month_sin",
+    "month_cos",
+    "city_total3",
+    "previous_hotspot",
+    "hotspot_rate12",
+    "last_count_rank"
+  ],
+  "use_neighbourhood": false,
+  "params": {
+    "C": 1.0,
+    "class_weight": "balanced"
+  },
+  "threshold": 0.53,
+  "label": "hotspot_next_month",
+  "decision": "Predict hotspot when the model score is at or above the threshold.",
+  "trained_on": "train.csv only (forecast months February 2015 to December 2021)"
+}
